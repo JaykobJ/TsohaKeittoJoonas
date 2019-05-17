@@ -1,0 +1,8 @@
+Henkilö((pk) id:Integer, nimi:String, sähköposti:String)
+Käyttäjätunnus((pk) id:Integer, (fk) henkilö_id -> Henkilö, nimi:String)
+Resepti((pk) id:Integer, nimi:String, ohje:String)
+Kategoria((pk) id:Integer, nimi:String)
+Raaka-aine((pk) id:Integer, nimi:String)
+KäyttäjäResepti((fk) käyttäjätunnus_id - > Käyttäjätunnus, (fk) resepti_id -> Resepti)
+ReseptiKategoria((fk) resepti_id - > Resepti, (fk) kategoria_id -> Kategoria)
+ReseptiRaaka-aine((fk) resepti_id - > Resepti, (fk) raaka-aine_id -> Raaka-aine)
