@@ -7,4 +7,4 @@ KäyttäjäResepti((fk) käyttäjätunnus_id - > Käyttäjätunnus, (fk) resepti
 ReseptiKategoria((fk) resepti_id - > Resepti, (fk) kategoria_id -> Kategoria)
 ReseptiRaaka-aine((fk) resepti_id - > Resepti, (fk) raaka-aine_id -> Raaka-aine)
 
-![alt_text](Kuvat/Tietokantakaavio.PNG)
+[alt_text](Kuvat/Tietokantakaavio.PNG)
