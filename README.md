@@ -1,2 +1,2 @@
 # TsohaKeittoJoonas
-Elektroninen keittokirja
+Teen tietokantasovelluksen elektroniselle keittokirjalle
