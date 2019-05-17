@@ -6,3 +6,5 @@ Raaka-aine((pk) id:Integer, nimi:String)
 KäyttäjäResepti((fk) käyttäjätunnus_id - > Käyttäjätunnus, (fk) resepti_id -> Resepti)
 ReseptiKategoria((fk) resepti_id - > Resepti, (fk) kategoria_id -> Kategoria)
 ReseptiRaaka-aine((fk) resepti_id - > Resepti, (fk) raaka-aine_id -> Raaka-aine)
+
+![](kuvat/Tietokantakaavio.png)
