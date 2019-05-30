@@ -1,7 +1,7 @@
   {% extends "layout.html" %}
 
   {% block body %}
-  <form method="POST" action="{{ url_for('tasks_create') }}">
+  <form method="POST" action="{{ url_for('recipes_create') }}">
     <table>
       <tr>
 	<td>
@@ -20,17 +20,17 @@
       </tr>
       <tr>
 	<td>
-	  {{ form.done.label }}
+	  {{ form.good.label }}
 	</td>
 	<td>
-	  {{ form.done }}
+	  {{ form.good }}
 	</td>
 	<td>
 	</td>
       </tr>
       <tr>
 	<td colspan="3">
-	  <input type="submit" value="Add a new task"/>
+	  <input type="submit" value="Add a new recipe"/>
 	</td>
       </tr>
   </form>

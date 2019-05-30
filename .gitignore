@@ -123,6 +123,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# idea
+.idea/
+idea/
+
 venv
 __pycache__
-tasks.db 
+recipes.db

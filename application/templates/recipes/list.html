@@ -3,16 +3,16 @@
 {% block body %}
   <table>
     <tr>
-      <th>Task</th>
-      <th>Done</th>
+      <th>Recipe</th>
+      <th>Good</th>
       <th></th>
     </tr>
-    {% for task in tasks %}
+    {% for recipe in recipes %}
     <tr>
-      <td>{{ task.name }}</td>
-      <td>{{ task.done }}</td>
+      <td>{{ recipe.name }}</td>
+      <td>{{ recipe.good }}</td>
       <td>
-	<form method="POST" action="{{ url_for('tasks_set_done', task_id=task.id) }}">
+	<form method="POST" action="{{ url_for('recipes_set_good', recipe_id=recipe.id) }}">
 	  <input type="submit" value="Change status!"/>
 	</form>
       </td>
