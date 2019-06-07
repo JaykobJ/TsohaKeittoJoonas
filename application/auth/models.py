@@ -1,21 +1,18 @@
 from application import db
+from application.models import Base
+from sqlalchemy.sql import text
 
 
-class User(db.Model):
+class User(Base):
 
     __tablename__ = "account"
-  
-    id = db.Column(db.Integer, primary_key=True)
-    date_created = db.Column(db.DateTime, default=db.func.current_timestamp())
-    date_modified = db.Column(db.DateTime, default=db.func.current_timestamp(),
-                              onupdate=db.func.current_timestamp())
 
-    #person_id = db.Column(db.Integer, db.ForeignKey('person.id'))
     name = db.Column(db.String(99), nullable=False)
     username = db.Column(db.String(30), nullable=False)
     password = db.Column(db.String(30), nullable=False)
 
     recipes = db.relationship("Recipe", backref='account', lazy=True)
+    person = db.relationship("Person", backref='account', lazy=True)
 
     def __init__(self, name, username, password):
         self.name = name
@@ -33,3 +30,14 @@ class User(db.Model):
 
     def is_authenticated(self):
         return True
+
+        
+    @staticmethod
+    def get_user_liked_recipes():
+        query = text("SELECT Account.name, Recipe.name FROM Recipe"
+                    " INNER JOIN Account ON Recipe.account_id = Account.id")
+        result = db.engine.execute(query)
+        good_recipes = []
+        for row in result:
+            good_recipes.append({"name": row[0], "recipe": row[1]})
+        return good_recipes

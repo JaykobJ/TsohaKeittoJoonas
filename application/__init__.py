@@ -20,6 +20,9 @@ from application import views
 # recipes
 from application.recipes import models
 from application.recipes import views
+# persons
+from application.persons import models
+from application.persons import views
 # authenticator
 from application.auth import models
 from application.auth import views

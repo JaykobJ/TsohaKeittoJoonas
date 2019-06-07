@@ -1,0 +1,40 @@
+  {% extends "layout.html" %}
+
+  {% block body %}
+  <form method="POST" action="{{ url_for('persons_create') }}">
+    <table>
+      <tr>
+	<td>
+	  {{ form.email.label }}
+	</td>
+	<td>
+	  {{ form.email }}
+	</td>
+      </tr>
+      <tr>
+	<td>
+	  {{ form.address.label }}
+	</td>
+	<td>
+	  {{ form.address }}
+	</td>
+	<td>
+	</td>
+      </tr>
+		<tr>
+	<td>
+	  {{ form.number.label }}
+	</td>
+	<td>
+	  {{ form.number }}
+	</td>
+	<td>
+	</td>
+      </tr>
+      <tr>
+	<td colspan="3">
+	  <input type="submit" value="Add information"/>
+	</td>
+      </tr>
+  </form>
+  {% endblock %}

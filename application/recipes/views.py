@@ -3,11 +3,12 @@ from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 from application.recipes.models import Recipe
 from application.recipes.forms import RecipeForm
+from application.auth.models import User
 
 
 @app.route("/recipes", methods=["GET"])
 def recipes_index():
-    return render_template("recipes/list.html", recipes = Recipe.query.all())
+    return render_template("recipes/list.html",  liked_recipes=User.get_user_liked_recipes())
 
 
 @app.route("/recipes/new/")

@@ -1,22 +1,16 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  <table>
-    <tr>
-      <th>Recipe</th>
-      <th>Good</th>
-      <th></th>
-    </tr>
-    {% for recipe in recipes %}
-    <tr>
-      <td>{{ recipe.name }}</td>
-      <td>{{ recipe.good }}</td>
-      <td>
-	<form method="POST" action="{{ url_for('recipes_set_good', recipe_id=recipe.id) }}">
-	  <input type="submit" value="Change status!"/>
-	</form>
-      </td>
-    </tr>
-    {% endfor %}
-  </table>
+  {% if liked_recipes is defined %}
+    <p>
+       User created Recipes:
+    </p>
+
+    <ul>
+      {% for user in liked_recipes %}
+      <li>
+          {{user.name}} || {{user.recipe}}
+      </li>
+      {% endfor %}
+  {% endif %}
 {% endblock %}
