@@ -1,6 +1,6 @@
-from application import app, db
-from flask import redirect, render_template, request, url_for
-from flask_login import login_required, current_user
+from application import app, db, login_manager, login_required
+from flask import render_template, request, redirect, url_for
+from flask_login import current_user
 from application.recipes.models import Recipe
 from application.recipes.forms import RecipeForm
 from application.auth.models import User
@@ -12,16 +12,19 @@ def recipes_index():
 
 
 @app.route("/recipes/new/")
-@login_required
+@login_required(role="ADMIN")
 def recipes_form():
     return render_template("recipes/new.html", form=RecipeForm())
 
 
 @app.route("/recipes/<recipe_id>/", methods=["POST"])
-@login_required
+#@login_required
 def recipes_set_good(recipe_id):
 
     r = Recipe.query.get(recipe_id)
+    if r.account_id != current_user.id:
+        # tee jotain, esim.
+        return login_manager.unauthorized()
     r.good = True
     db.session().commit()
   
@@ -29,7 +32,7 @@ def recipes_set_good(recipe_id):
 
 
 @app.route("/recipes/", methods=["POST"])
-@login_required
+@login_required(role="ANY")
 def recipes_create():
     form = RecipeForm(request.form)
 

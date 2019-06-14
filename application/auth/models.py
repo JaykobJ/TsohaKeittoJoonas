@@ -31,11 +31,15 @@ class User(Base):
     def is_authenticated(self):
         return True
 
+    def roles(self):
+        return ["ADMIN"]
+
         
     @staticmethod
     def get_user_liked_recipes():
         query = text("SELECT Account.name, Recipe.name FROM Recipe"
-                    " INNER JOIN Account ON Recipe.account_id = Account.id")
+                    " INNER JOIN Account ON Recipe.account_id = Account.id"
+                    " GROUP BY Recipe.name")
         result = db.engine.execute(query)
         good_recipes = []
         for row in result:
