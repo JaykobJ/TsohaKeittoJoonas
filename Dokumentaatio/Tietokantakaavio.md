@@ -7,7 +7,7 @@ KäyttäjäResepti((fk) käyttäjätunnus_id - > Käyttäjätunnus, (fk) resepti
 ReseptiKategoria((fk) resepti_id - > Resepti, (fk) kategoria_id -> Kategoria)
 ReseptiRaaka-aine((fk) resepti_id - > Resepti, (fk) raaka-aine_id -> Raaka-aine)
 
-![](/Kuvat/Tietokantakaavio.PNG)
+![](/Kuvat/Tietokantakaavio.png)
 
 
 CREATE TABLE account (
