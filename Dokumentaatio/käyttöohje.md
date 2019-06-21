@@ -1,4 +1,4 @@
-Sovellusta pääset käyttämään osoitteessa: 
+Sovellusta pääset käyttämään osoitteessa: https://tsoha-keitto-joonas.herokuapp.com
 
 Ohjeet:
 1) mikäli sinulla ei ole käyttäjätunnuksia. Tee sellaiset painamalla oikeassa yläkulmassa olevaa nappia "register". Täytä vaaditut kentät.
