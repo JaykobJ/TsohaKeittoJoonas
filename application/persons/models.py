@@ -4,6 +4,8 @@ from application.models import Base
 
 class Person(Base):
 
+    __tablename__ = "person"
+
     email = db.Column(db.String(99), nullable=False)
     address = db.Column(db.String(99), nullable=False)
     number = db.Column(db.String(20), nullable=False)

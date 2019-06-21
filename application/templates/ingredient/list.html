@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% if all_Ingredients is defined %}
+  <p>
+    Current ingredients:
+  </p>
+  <ul>
+    {% for ingredient in all_Ingredients %}
+    <li>
+      {{ ingredient.name }}
+    </li>
+    {% endfor %}
+  </ul>
+{% endif %}
+{% endblock %}

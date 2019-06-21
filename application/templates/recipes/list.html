@@ -1,16 +1,16 @@
 {% extends "layout.html" %}
 
 {% block body %}
-  {% if liked_recipes is defined %}
-    <p>
-       User created Recipes:
-    </p>
-
-    <ul>
-      {% for user in liked_recipes %}
-      <li>
-          {{user.name}} || {{user.recipe}}
-      </li>
-      {% endfor %}
-  {% endif %}
+{% if all_recipes is defined %}
+  <p>
+    User created Recipes:
+  </p>
+  <ul>
+    {% for recipe in all_recipes %}
+    <li>
+      {{recipe.name}} || {{recipe.username}}
+    </li>
+    {% endfor %}
+  </ul>
+{% endif %}
 {% endblock %}

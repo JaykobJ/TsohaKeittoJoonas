@@ -11,7 +11,7 @@ class User(Base):
     username = db.Column(db.String(30), nullable=False)
     password = db.Column(db.String(30), nullable=False)
 
-    recipes = db.relationship("Recipe", backref='account', lazy=True)
+    recipe = db.relationship("Recipe", secondary="user_recipe", backref="Account")
     person = db.relationship("Person", backref='account', lazy=True)
 
     def __init__(self, name, username, password):
@@ -33,15 +33,3 @@ class User(Base):
 
     def roles(self):
         return ["ADMIN"]
-
-        
-    @staticmethod
-    def get_user_liked_recipes():
-        query = text("SELECT Account.name, Recipe.name FROM Recipe"
-                    " INNER JOIN Account ON Recipe.account_id = Account.id"
-                    " GROUP BY Recipe.name")
-        result = db.engine.execute(query)
-        good_recipes = []
-        for row in result:
-            good_recipes.append({"name": row[0], "recipe": row[1]})
-        return good_recipes

@@ -72,6 +72,13 @@ from application.persons import views
 # authenticator
 from application.auth import models
 from application.auth import views
+# ingredients
+from application.ingredient import models
+from application.ingredient import views
+# user recipes
+from application.user_recipe import models
+# recipe ingredients
+from application.recipe_ingredient import models
 
 # log in
 from application.auth.models import User

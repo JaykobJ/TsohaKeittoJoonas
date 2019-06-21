@@ -8,7 +8,7 @@ from application.auth.models import User
 
 @app.route("/recipes", methods=["GET"])
 def recipes_index():
-    return render_template("recipes/list.html",  liked_recipes=User.get_user_liked_recipes())
+    return render_template("recipes/list.html",  all_recipes=Recipe.get_recipes())
 
 
 @app.route("/recipes/new/")
@@ -32,27 +32,15 @@ def recipes_set_good(recipe_id):
 
 
 @app.route("/recipes/", methods=["POST"])
-@login_required(role="ANY")
+@login_required(role="ADMIN")
 def recipes_create():
     form = RecipeForm(request.form)
 
     if not form.validate():
         return render_template("recipes/new.html", form=form)
 
-    r = Recipe(form.name.data)
-    r.good = form.good.data
-    r.account_id = current_user.id
-    print('----------------------------------------')
-    print(form.name.data)
-    print(form.good.data)
-    print('----------------------------------------')
-    print(r.account_id)
-    print(r.date_created)
-    print(r.date_modified)
-    print(r.good)
-    print(r.id)
-    print(r.name)
-    print('----------------------------------------')
+    r = Recipe(form.name.data, form.good.data)
+    r.account.append(current_user)
     db.session().add(r)
     db.session().commit()
   
