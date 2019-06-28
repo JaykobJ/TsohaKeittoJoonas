@@ -38,7 +38,7 @@ def auth_register():
     if request.method == "POST" and form.validate():
         try:
             new_user = User(form.username.data, form.password.data)
-            user_role = Role.query.filter_by(name="USER").first()
+            user_role = Role.query.filter_by(id=2).first()
             new_user.role.append(user_role)
             db.session().add(new_user)
             db.session().commit()
