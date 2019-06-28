@@ -21,7 +21,7 @@ https://tsoha-keitto-joonas.herokuapp.com
 
 -----------------------------
 
-Herokuun:
+Herokuun luodut tunnukset:
 
 Käyttäjätunnus: test
 
