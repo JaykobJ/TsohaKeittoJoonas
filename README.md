@@ -1,5 +1,5 @@
 # TsohaKeittoJoonas
-Teen tietokantasovelluksen elektroniselle keittokirjalle
+Kurssin aikana suunnittelen ja toteutan tietokantasovelluksen elektroniselle keittokijalle. Keittokirja on tarkoitus palvella käyttäjää joka haluaa pitää omia reseptejä tietokannssa ja selata omia sekä muiden käyttäjine respetejä.
 
 [tietokantakaavio](Dokumentaatio/Tietokantakaavio.md)
 
@@ -7,5 +7,5 @@ Teen tietokantasovelluksen elektroniselle keittokirjalle
 
 https://tsoha-keitto-joonas.herokuapp.com
 
-Käyttäjätunnus: joku
-Salasana: jaba
+Käyttäjätunnus: test
+Salasana: test
