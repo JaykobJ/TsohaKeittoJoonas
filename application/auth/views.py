@@ -39,6 +39,7 @@ def auth_register():
         try:
             new_user = User(form.username.data, form.password.data)
             user_role = Role.query.filter_by(id=2).first()
+            print(user_role.name)
             new_user.role.append(user_role)
             db.session().add(new_user)
             db.session().commit()
