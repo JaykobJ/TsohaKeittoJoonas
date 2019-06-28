@@ -48,10 +48,6 @@ def login_required(accepted_roles=["USER", "ADMIN"]):
 
                 for user_role in current_user.roles():
                     for role in accepted_roles:
-                        print("\n\n")
-                        print(user_role.name)
-                        print(role)
-                        print("\n\n")
                         if user_role.name == role:
                             unauthorized = False
                             break

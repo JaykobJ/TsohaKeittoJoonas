@@ -27,7 +27,6 @@ def recipes_instructions(recipe_id):
 @app.route("/recipes/delete/<recipeid>", methods=["POST"])
 @login_required()
 def delete_recipe(recipeid):
-    print("\n\n MENEE DELETEEN \n\n")
     try:
         UserRecipe.query.filter_by(recipe_id=recipeid).delete()
         RecipeIngredient.query.filter_by(recipe_id=recipeid).delete()
@@ -43,33 +42,26 @@ def delete_recipe(recipeid):
 @app.route("/recipes/edit/<recipeid>", methods=["GET", "POST"])
 @login_required()
 def recipe_edit(recipeid):
-    print("\n\n MENEE EDITEEN \n\n")
     try:
         recipe = Recipe.query.filter_by(id=recipeid).first()
         RecipeIngredient.query.filter_by(recipe_id=recipeid).delete()
-        print("\n\n")
-        print(recipe)
-        print("\n\n")
     except:
         flash("Could not connect to database")
         return redirect(url_for("error_page", message="Error connecting to database"))
 
     form = RecipeForm().new()
     if request.method == "GET":
-        print("\n\n MENEE gettiin \n\n")
         form.name.data = recipe.name
         form.instruction.data = recipe.instruction
         return render_template("recipes/edit.html", recipeid=recipeid, form=form)
 
     if request.method == "POST" and form.validate():
-        print("\n\n MENEE postiin \n\n")
         recipe.name = form.name.data
         recipe.instruction = form.instruction.data
         for data in form.ingredients.data:
             ingredient = Ingredient.query.filter_by(name=data).first()
             recipe.ingredient.append(ingredient)
         try:
-            print("\n\n COMMITOI \n\n")
             db.session().commit()
         except:
             flash("Problems connecting to database")

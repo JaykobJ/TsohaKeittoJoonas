@@ -12,15 +12,10 @@ def get_ingredients():
         ingredients = []
         if response is not None:
             for row in response:
-                # print("\n")
-                # print(type(row))
-                # print(type(row[3]))
-                # print("\n")
                 ingredient = (row[3], row[3])
                 ingredients.append(ingredient)
         return ingredients
     except:
-        print("exception")
         ingredients = []
         return ingredients
 
