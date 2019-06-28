@@ -38,11 +38,10 @@ def auth_register():
     if request.method == "POST" and form.validate():
         try:
             new_user = User(form.username.data, form.password.data)
-            user_role = Role.query.filter_by(id=2).first()
-            #new_user.role.append(user_role)
+            user_role = Role.query.filter_by(name="USER").first()
+            print(user_role.name)
+            new_user.role.append(user_role)
             db.session().add(new_user)
-            statement = User.account_role.insert().values(account_id=new_user.id, role_id=user_role.id)
-            db.session.execute(statement)
             db.session().commit()
             user = User.query.filter_by(username=new_user.username, password=new_user.password).first()
             login_user(user)

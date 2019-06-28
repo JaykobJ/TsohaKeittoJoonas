@@ -89,21 +89,16 @@ def recipes_create():
     if request.method == "POST" and form.validate():
         try:
             r = Recipe(form.name.data, form.instruction.data)
-            #r.account.append(current_user)
-            db.session().add(r)
-            statement = UserRecipe.insert().values(account_id=current_user.id, recipe_id=r.id)
-            db.session.execute(statement)
+            r.account.append(current_user)
+
             for data in form.ingredients.data:
                 ingredient = Ingredient.query.filter_by(name=data).first()
-                #r.ingredient.append(ingredient)
-                statement = User.account_role.insert().values(recipe_id=r.id, ingredient_id=ingredient.id)
-                db.session.execute(statement)
-
+                r.ingredient.append(ingredient)
+            db.session().add(r)
             db.session().commit()
             return redirect(url_for("recipes_index"))
         except:
             flash("could not connect to database")
             return redirect(url_for("error_page", message="Error connecting to database"))
-        return redirect(url_for("recipes_index"))
 
     return render_template("recipes/new.html", form=form)
