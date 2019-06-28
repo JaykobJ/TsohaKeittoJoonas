@@ -12,11 +12,10 @@ class LoginForm(FlaskForm):
 
 
 class RegisterForm(FlaskForm):
-    name = StringField("Name", [validators.DataRequired()])
     username = StringField("Username", [validators.DataRequired()])
     def validate_username (form,field):
-        name = User.query.filter_by(username=field.data).first()
-        if name is not None:
+        usernamename = User.query.filter_by(username=field.data).first()
+        if usernamename is not None:
             raise ValidationError(message='Username is all ready taken')
     password = PasswordField("Password", [validators.Length(min=3, max=20), validators.DataRequired()])
 

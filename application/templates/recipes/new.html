@@ -13,17 +13,44 @@
 			<td>
 				<ul>
 				{% for error in form.name.errors %}
-					<li>{{ error }}</li>
+					<li style="color:red">{{ error }}</li>
 				{% endfor %}
 				</ul>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				{{ form.good.label }}
+				{{ form.ingredients.label }}
+			</td>
+			<td >
+				{{ form.ingredients() }}
 			</td>
 			<td>
-				{{ form.good }}
+				<ul>
+				{% for error in form.ingredients.errors %}
+					<li style="color:red">{{ error }}</li>
+				{% endfor %}
+				</ul>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				<button formaction="{{ url_for('ingredient_create') }}">add ingredient</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.instruction.label }}
+			</td>
+			<td>
+				{{ form.instruction }}
+			</td>
+			<td>
+				<ul>
+				{% for error in form.instruction.errors %}
+					<li style="color:red">{{ error }}</li>
+				{% endfor %}
+				</ul>
 			</td>
 		</tr>
 		<tr>

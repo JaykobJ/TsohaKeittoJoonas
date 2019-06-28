@@ -1,16 +1,53 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{% if all_recipes is defined %}
-  <p>
-    User created Recipes:
-  </p>
-  <ul>
-    {% for recipe in all_recipes %}
-    <li>
-      {{recipe.name}} || {{recipe.username}}
-    </li>
-    {% endfor %}
-  </ul>
+{% if user_recipes is defined %}
+<div class="container">
+  <h2>All recipes</h2>
+  <p class="small" style="color:green">Click on the recipe name to see instructions</p>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Recipe name</th>
+        <th>Username</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for recipe in user_recipes %}
+      <tr>
+        <td>
+          <a href="{{ url_for('recipes_instructions', recipe_id=recipe.recipe_id) }}"><i>{{recipe.name}}</i></a>
+        </td>
+        <td>
+          {{recipe.username}}
+        </td>
+        {% if recipe.account_id == current_user.id %}
+        <td>
+            <form method="GET" action="{{ url_for('recipe_edit', recipeid=recipe.recipe_id) }}">
+                <input style="color:blue" type="submit" value="Edit"/>
+            </form>
+        </td>
+        <td>
+            <form method="POST" action="{{ url_for('delete_recipe', recipeid=recipe.recipe_id) }}">
+                <input style="color:red" type="submit" value="Delete"/>
+            </form>
+        </td>
+          <td>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                <ul class=flashes>
+                {% for category, message in messages %}
+                  <li  style="color:red" class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+          </td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endif %}
 {% endblock %}

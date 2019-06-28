@@ -1,8 +1,28 @@
 {% extends "layout.html" %}
 
 {% block body %}
+<div class="container">
   <h1>
     Welcome to e-recipes
   </h1>
-
+  {% if user_recipe_count is defined %}
+    <p>Recipes count by users</p>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>username</th>
+          <th>recipe count</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in user_recipe_count %}
+          <tr>
+            <td>{{user.username}}</td>
+            <td>{{user.recipe_count}}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+</div>
 {% endblock %}

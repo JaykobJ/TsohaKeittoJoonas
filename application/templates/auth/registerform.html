@@ -6,21 +6,6 @@
 <table>
     <tr>
         <td>
-            {{ form.name.label }}
-        </td>
-        <td>
-            {{ form.name }}
-        </td>
-        <td>
-            <ul>
-            {% for error in form.name.errors %}
-                <li style="color:red;"> {{ error }} </li>
-            {% endfor%}
-            </ul>
-        </td>
-    </tr>
-    <tr>
-        <td>
             {{ form.username.label }}
         </td>
         <td>
@@ -29,7 +14,7 @@
         <td>
             <ul>
             {% for error in form.username.errors %}
-                <li style="color:red;"> {{ error }} </li>
+                <li style="color:red"> {{ error }} </li>
             {% endfor%}
             </ul>
         </td>
@@ -44,7 +29,7 @@
         <td>
             <ul>
             {% for error in form.password.errors %}
-                <li style="color:red;"> {{ error }} </li>
+                <li style="color:red"> {{ error }} </li>
             {% endfor%}
             </ul>
         </td>

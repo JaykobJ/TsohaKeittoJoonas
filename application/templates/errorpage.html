@@ -1,0 +1,9 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% if message is defined %}
+  <h1 style="color:red;">
+    {{message}}
+  </h1>
+{% endif %}
+{% endblock %}

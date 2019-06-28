@@ -1,11 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import BooleanField, StringField, validators
+from wtforms import BooleanField, StringField, validators, ValidationError
 
 
 class PersonForm(FlaskForm):
-    email = StringField("Email address", [validators.DataRequired(), validators.Email()])
+    name = StringField("Name", [validators.DataRequired()])
+    email = StringField("Email address", [validators.DataRequired(), validators.Email(message='Invalid email')])
     address = StringField("Street address", [validators.DataRequired()])
-    number = StringField("Phone number", [validators.DataRequired()])
 
     class Meta:
         csrf = False

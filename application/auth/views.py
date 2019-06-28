@@ -1,8 +1,8 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request, redirect, url_for, flash
 from flask_login import login_user, logout_user
 
 from application import app, db
-from application.auth.models import User
+from application.auth.models import User, Role
 from application.auth.forms import LoginForm, RegisterForm
 
 
@@ -36,11 +36,17 @@ def auth_register():
     form = RegisterForm(request.form)
 
     if request.method == "POST" and form.validate():
-        new_user = User(form.name.data, form.username.data, form.password.data)
-        db.session().add(new_user)
-        db.session().commit()
-        user = User.query.filter_by(name=new_user.name, username=new_user.username, password=new_user.password).first()
-        login_user(user)
-        return redirect(url_for("persons_information"))
+        try:
+            new_user = User(form.username.data, form.password.data)
+            user_role = Role.query.filter_by(name="USER").first()
+            new_user.role.append(user_role)
+            db.session().add(new_user)
+            db.session().commit()
+            user = User.query.filter_by(username=new_user.username, password=new_user.password).first()
+            login_user(user)
+            return redirect(url_for("persons_information"))
+        except:
+            flash("Error connecting to database", "error")
+            return redirect(url_for("error_page", message="Error connecting to database"))
 
     return render_template("auth/registerform.html", form=form, error="Error creating account")

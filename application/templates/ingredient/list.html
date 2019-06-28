@@ -2,15 +2,24 @@
 
 {% block body %}
 {% if all_Ingredients is defined %}
-  <p>
-    Current ingredients:
-  </p>
-  <ul>
-    {% for ingredient in all_Ingredients %}
-    <li>
-      {{ ingredient.name }}
-    </li>
-    {% endfor %}
-  </ul>
+<div class="container">
+  <h2>Ingredients</h2>
+  <table class="table table-condensed">
+    <thead>
+      <tr>
+        <th>Ingredient name</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ingredient in all_Ingredients %}
+      <tr>
+        <td>
+          {{ ingredient.name }}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 {% endif %}
 {% endblock %}

@@ -13,7 +13,7 @@
 			<td>
 				<ul>
 				{% for error in form.name.errors %}
-					<li>{{ error }}</li>
+					<li style="color:red">{{ error }}</li>
 				{% endfor %}
 				</ul>
 			</td>
@@ -23,5 +23,6 @@
 				<input type="submit" value="Add new ingredient"/>
 			</td>
 		</tr>
+	</table>
 </form>
 {% endblock %}

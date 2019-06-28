@@ -15,10 +15,13 @@ class Ingredient(Base):
 
     @staticmethod
     def get_all_ingredients():
-        query = text("SELECT * FROM Ingredient")
-        result = db.engine.execute(query)
-        ingredients = []
+        try:
+            query = text("SELECT * FROM Ingredient")
+            result = db.engine.execute(query)
+            ingredients = []
 
-        for row in result:
-            ingredients.append({"name": row[3]})
-        return ingredients
+            for row in result:
+                ingredients.append({"name": row[3]})
+            return ingredients
+        except Exception as e:
+            return str(e)

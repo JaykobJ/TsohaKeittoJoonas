@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+
+{% block body %}
+{% if recipe is defined %}
+<div class="container">
+    <h1>Instuctions for recipe:</h1>
+    <h2> {{recipe.name}} </h2>
+    {% if ingredients is defined %}
+    <h5> Needed ingredients for the recipe </h5>
+    <ul>
+        {% for ingredient in ingredients %}
+        <li>
+            {{ingredient.name}}
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <h5> Recipes instuction: </h5>
+    <div class="container">
+        <p style="word-wrap: break-word">{{recipe.instruction}}</p>
+    </div>
+</div>
+{% endif %}
+{% endblock %}

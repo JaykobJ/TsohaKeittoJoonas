@@ -1,8 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-{{ error }}
-<form method="POST" action="{{ url_for('persons_information') }}">
+<form method="POST" action="{{ url_for('recipe_edit', recipeid=recipeid) }}">
 	<table>
 		<tr>
 			<td>
@@ -21,37 +20,42 @@
 		</tr>
 		<tr>
 			<td>
-				{{ form.email.label }}
+				{{ form.ingredients.label }}
 			</td>
-			<td>
-				{{ form.email }}
+			<td >
+				{{ form.ingredients() }}
 			</td>
 			<td>
 				<ul>
-				{% for error in form.email.errors %}
+				{% for error in form.ingredients.errors %}
 					<li style="color:red">{{ error }}</li>
-				{% endfor%}
+				{% endfor %}
 				</ul>
 			</td>
 		</tr>
 		<tr>
 			<td>
-				{{ form.address.label }}
+				<button formaction="{{ url_for('ingredient_create') }}">add ingredient</button>
+			</td>
+		</tr>
+		<tr>
+			<td>
+				{{ form.instruction.label }}
 			</td>
 			<td>
-				{{ form.address }}
+				{{ form.instruction }}
 			</td>
 			<td>
 				<ul>
-				{% for error in form.address.errors %}
+				{% for error in form.instruction.errors %}
 					<li style="color:red">{{ error }}</li>
-				{% endfor%}
+				{% endfor %}
 				</ul>
 			</td>
 		</tr>
 		<tr>
 			<td colspan="3">
-				<input type="submit" value="Add information"/>
+				<input type="submit" value="Edit"/>
 			</td>
 		</tr>
 </form>

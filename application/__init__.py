@@ -31,7 +31,7 @@ login_manager.login_message = "Please login to use this functionality."
 from functools import wraps
 
 
-def login_required(role="ANY"):
+def login_required(accepted_roles=["USER", "ADMIN"]):
     def wrapper(fn):
         @wraps(fn)
         def decorated_view(*args, **kwargs):
@@ -43,13 +43,18 @@ def login_required(role="ANY"):
 
             unauthorized = False
 
-            if role != "ANY":
+            if accepted_roles != "ANY":
                 unauthorized = True
 
                 for user_role in current_user.roles():
-                    if user_role == role:
-                        unauthorized = False
-                        break
+                    for role in accepted_roles:
+                        print("\n\n")
+                        print(user_role.name)
+                        print(role)
+                        print("\n\n")
+                        if user_role.name == role:
+                            unauthorized = False
+                            break
 
             if unauthorized:
                 return login_manager.unauthorized()
@@ -82,6 +87,20 @@ from application.recipe_ingredient import models
 
 # log in
 from application.auth.models import User
+from application.auth.models import Role
+
+try:
+    roles = Role.query.all()
+    if len(roles) < 1:
+        admin = Role(name="ADMIN")
+        user = Role(name="USER")
+        db.session().add(admin)
+        db.session().add(user)
+        db.session().commit()
+        print("\n Roles added to table 'Roles' \n")
+except:
+    print("\n Could not add role to table 'Roles' \n")
+
 
 @login_manager.user_loader
 def load_user(user_id):
