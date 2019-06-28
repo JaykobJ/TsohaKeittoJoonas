@@ -1,6 +1,6 @@
 Sovellusta pääset käyttämään osoitteessa: https://tsoha-keitto-joonas.herokuapp.com (Kaikki osat ei toimi enkä tiedä miksi)
 tai lataamalla sovelluksen omalle tietokoneelle
-[asennusohje](Dokumentaatio/asennusohje.md)
+[asennusohje](/Dokumentaatio/asennusohje.md)
 
 Ohjeet:
 0) etusivulla näet kaikkien käyttäjien respetien määrän laskevassa järjestyksessä
