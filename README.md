@@ -5,6 +5,10 @@ Kurssin aikana suunnittelen ja toteutan tietokantasovelluksen elektroniselle kei
 
 [dokumentaatio](Dokumentaatio/dokumentaatio.md)
 
+[asennusohje](Dokumentaatio/asennusohje.md)
+
+[käyttöohje](Dokumentaatio/käyttöohje.md)
+
 https://tsoha-keitto-joonas.herokuapp.com
 
 Käyttäjätunnus: test
